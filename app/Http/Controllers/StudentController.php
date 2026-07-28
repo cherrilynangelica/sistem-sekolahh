@@ -8,12 +8,12 @@ class StudentController extends Controller
 {
   public function index()
   {
-      return "Ini adalah halaman daftar siswa";
+      return "Menampilkan halaman daftar siswa";
   }
 
   public function create()
   {
-      return "Ini adalah halaman untuk menambahkan siswa baru";
+      return "Menampilkan halaman tambah siswa";
   }
 
   public function show(string $id)
@@ -23,21 +23,21 @@ class StudentController extends Controller
 
   public function edit(string $id)
   {
-      return "Ini adalah halaman untuk mengedit siswa dengan ID: {$id}";
+      return "Menampilkan halaman edit siswa";
   }
 
   public function store()
   {
-      return "Data siswa baru telah disimpan.";
+      return "Melakukan penambahan data siswa";
   }
 
   public function update(string $id)
   {
-      return "Data siswa dengan ID: {$id} telah diperbarui.";
+      return "Melakukan perubahan data siswa";
   }
 
   public function destroy(string $id)
   {
-      return "Data siswa dengan ID: {$id} telah dihapus.";
+      return "Menghapus data siswa";
   }
 }
