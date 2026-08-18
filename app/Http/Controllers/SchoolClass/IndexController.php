@@ -12,6 +12,26 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return "Menampilkan halaman daftar kelas";
+         $title = 'Sistem Sekolah - Daftar Kelas';
+      $sclasses = [
+          [
+              'id' => 1,
+              'name' => 'XII AKL 1',
+              'grade' => 'XII',
+              'major' => 'AKL',
+              'homeroom_teacher' => 'Budi Santoso', 
+          ],
+          [
+              'id' => 2,
+              'name' => 'XII TKJ 1',  
+              'grade' => 'XII',
+              'major' => 'TKJ',
+              'homeroom_teacher' => 'Siti Aminah',
+         ],
+      ];
+      return view('schoolclasses.index', [
+          'title' => $title,
+          'classes' => $sclasses
+      ]);
     }
 }
