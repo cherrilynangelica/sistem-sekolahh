@@ -32,7 +32,7 @@
             <div>
             <label for="major"
                 class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Jurusan</label>
-            <select id="major" name="major"
+            <select id="major" name="major_id"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
                 @foreach ($majors as $major)
                     <option value="{{ $major['id'] }}">
@@ -45,7 +45,7 @@
             <div>
             <label for="teacher"
                 class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Wali Kelas</label>
-            <select id="teache" name="teacher"
+            <select id="teacher" name="teacher_id"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
                 @foreach ($teachers as $teacher)
                     <option value="{{ $teacher['id'] }}">

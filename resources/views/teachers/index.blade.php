@@ -37,7 +37,9 @@
                        <td class="px-5 py-4">{{ $teacher['gender'] }}</td>
                        <td class="px-5 py-4">{{ $teacher['subject'] }}</td>
                        <td class="px-5 py-4">{{ $teacher['phone'] }}</td>
-                       <td class="px-5 py-4">{{ $teacher['status'] }}</td>
+                       <td class="px-5 py-4">
+                            <x-status-badge :status="$teacher['status']" />
+                    </td>
                        <td class="px-5 py-4">
                            <div class="flex justify-end gap-4 text-xs font-medium">
                                <a href="{{ route('teachers.show', ['id' => $teacher['id']]) }}"  
