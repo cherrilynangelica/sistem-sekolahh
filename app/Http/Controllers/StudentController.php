@@ -9,22 +9,7 @@ class StudentController extends Controller
   public function index()
   {
       $title = 'Sistem Sekolah - Daftar Siswa';
-      $students = [
-          [
-              'id' => 1,
-              'nis' => '1001',
-              'name' => 'Andi',
-              'class' => 'XII TKJ 2',
-              'major' => 'TKJ',
-          ],
-          [
-              'id' => 2,
-              'nis' => '1002',
-              'name' => 'Budi',
-              'class' => 'XII TKJ 1',
-              'major' => 'TKJ',
-          ]
-      ];
+      $students = Student::select(['id', 'nis', 'name', 'class', 'major'])->get();
       return view('students.index', [
           'title' => $title,
           'students' => $students
@@ -42,6 +27,8 @@ class StudentController extends Controller
   public function show(string $id)
   {
       $title = 'Sistem Sekolah - Detail Siswa';
+      print_r($id);
+      exit;
       return view('students.show', [
           'title' => $title
       ]);
@@ -55,9 +42,19 @@ class StudentController extends Controller
       ]);
   }
 
-  public function store()
+  public function store(Request $request)
   {
-      return "Melakukan penambahan data siswa";
+    $validatedRequest = $request->validate([
+        'nis' => ['required', 'string', 'size:4', 'unique:students,nis'],
+        'name' => ['required', 'string'],
+        'gender' => ['required', 'string', 'in:Laki-Laki,Perempuan'],
+        'major' => ['required', 'string', 'in:AKL,TKJ,BiD'],
+        'class' => ['required', 'string'],
+    ]);
+
+    Student::create($validatedRequest);
+   
+    return redirect()->route('students.index');
   }
 
   public function update(string $id)
