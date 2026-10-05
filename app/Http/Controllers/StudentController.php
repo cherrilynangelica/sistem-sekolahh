@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Student;
+
 class StudentController extends Controller
 {
   public function index()
@@ -24,21 +26,22 @@ class StudentController extends Controller
       ]);
   }
 
-  public function show(string $id)
+  public function show(string $student)
   {
       $title = 'Sistem Sekolah - Detail Siswa';
-      print_r($id);
-      exit;
-      return view('students.show', [
-          'title' => $title
-      ]);
+     
+    return view('students.show', [
+            'title' => $title,
+            'student' => $student
+        ]);
   }
 
-  public function edit(string $id)
+  public function edit(Student $student)
   {   
       $title = 'Sistem Sekolah - Ubah Data Siswa';
       return view('students.edit', [
-          'title' => $title
+          'title' => $title,
+          'student' => $student
       ]);
   }
 
@@ -57,13 +60,24 @@ class StudentController extends Controller
     return redirect()->route('students.index');
   }
 
-  public function update(string $id)
+  public function update(Student $student, Request $request)
   {
-      return "Melakukan perubahan data siswa";
+    $validatedRequest = $request->validate([
+        'nis' => ['required', 'string', 'size:4', 'unique:students,nis,' . $student->id],
+        'name' => ['required', 'string'],
+        'gender' => ['required', 'string', 'in:Laki-Laki,Perempuan'],
+        'major' => ['required', 'string', 'in:AKL,TKJ,BiD'],
+        'class' => ['required', 'string'],
+    ]);
+
+    $student->update($validatedRequest);
+   
+    return redirect()->route('students.index');
   }
 
-  public function destroy(string $id)
+  public function destroy(Student $student)
   {
-      return "Menghapus data siswa";
+    $student->delete();
+    return redirect()->route('students.index');
   }
 }
