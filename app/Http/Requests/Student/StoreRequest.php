@@ -12,7 +12,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'nis' => ['required', 'string', 'size:4', 'unique:students,nis,' . $this->student->id],
+        'nis' => ['required', 'string', 'size:4', 'unique:students,nis,'],
         'name' => ['required', 'string'],
         'gender' => ['required', 'string', 'in:Laki-Laki,Perempuan'],
         'major' => ['required', 'string', 'in:AKL,TKJ,BiD'],
